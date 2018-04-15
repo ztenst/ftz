@@ -56,7 +56,7 @@ class IndexController extends ApiController
 
 	public function actionGetRange($num='')
 	{
-		$sql = "select count(1)+1 as 'range' from score where num>(select num from score where num=$num)";
+		$sql = "select count(1)+1 as 'range' from score where num>(select distinct(num) from score where num=$num)";
 		$this->frame['data'] = Yii::app()->db->createCommand($sql)->queryScalar();
 	}
 }
