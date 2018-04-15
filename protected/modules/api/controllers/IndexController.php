@@ -43,7 +43,7 @@ class IndexController extends ApiController
 	{
 		$this->frame['data'] = [
 			'rule'=>SiteExt::getAttr('qjpz','rule'),
-			'qr'=>SiteExt::getAttr('qjpz','wxQr'),
+			'qr'=>ImageTools::fixImage(SiteExt::getAttr('qjpz','wxQr')),
 		];
 	}
 
