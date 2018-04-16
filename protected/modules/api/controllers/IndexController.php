@@ -43,7 +43,7 @@ class IndexController extends ApiController
 	{
 		$this->frame['data'] = [
 			'rule'=>SiteExt::getAttr('qjpz','rule'),
-			'qr'=>Yii::app()->request->getHostInfo().'/ftz_html/images/ercode2.png',
+			'qr'=>Yii::app()->request->getHostInfo().'/ftz_html/images/ercode2.jpg',
 		];
 	}
 
