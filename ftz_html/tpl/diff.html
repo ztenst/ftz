@@ -1,0 +1,10 @@
+    <div class="diff bg">
+        <div class="diff-title"></div>
+        <div class="diff-rule ruleTitle"><span class="ruleTitle-text">点击立即开始游戏</span></div>
+        <div class="diff-btns">
+            <div class="diff-btn" ng-click="start(1)">初级难度</div>
+            <div class="diff-btn" ng-click="start(2)">中级难度</div>
+            <div class="diff-btn" ng-click="start(3)">高级难度</div>
+        </div>
+        <div class="diff-last" ng-if="result">上次挑战成绩：<span class="diff-last_h">{{result.levelStr}}{{result.no}}题</span></div>
+    </div>    

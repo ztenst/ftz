@@ -1,0 +1,28 @@
+    <div class="result-tip">长按下方图片保存</div>
+    <div class="result-link" ng-click="showMore()">更多文史知识</div>
+    <img ng-src="{{img}}" alt="" class="result-img"/>
+    <div class="result result_ok" id="j-result_ok">
+        <div class="result-note">恭喜您参与挑战繁体字（{{config.siteConfig.levelStr}}）<br/>排名第<span class="result-note_h">{{config.siteConfig.rate}}</span>名</div>
+        <div class="result-state">
+            <div class="result-stateOk" ng-if="config.siteConfig.state == 3"></div>
+            <div class="result-stateAgain" ng-if="config.siteConfig.state == 2">共答对{{config.siteConfig.no}}题</div>
+        </div>
+        <div class="result-ercode">
+            <div class="result-ercodeImg">
+                <img ng-src="{{config.siteConfig.qr}}" alt="" class="blockImg"/>
+            </div>
+            <div class="result-ercodeText">扫描开始游戏</div>
+        </div>
+    </div>  
+    <div class="result-btn" ui-sref="diff">挑战高级</div>
+    <div class="resultDialog" ng-class="{'resultDialog_show' : show}">
+        <div class="resultDialog-backdrop"></div>
+        <div class="resultDialog-hd">
+            <div class="resultDialog-close" ng-click="close()"></div>
+            <div class="resultDialog-ercode">
+                <img ng-src="{{config.siteConfig.qr}}" alt="" class="blockImg"/>
+            </div>
+            <div class="resultDialog-text">识别图中二维码<br/>更多文史知识尽在这里</div>
+        </div>
+    </div>
+

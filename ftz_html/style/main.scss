@@ -1,0 +1,375 @@
+$mc:#4a130e;
+/* reset */
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+header,footer,section,article,aside,nav,hgroup,address,figure,figcaption,menu,details{display:block;}
+table{border-collapse:collapse;border-spacing:0;}
+caption,th{text-align:left;font-weight:normal;}
+html,body,fieldset,img,iframe,abbr{border:0;}
+i,cite,em,var,address,dfn{font-style:normal;}
+[hidefocus],summary{outline:0;}
+li{list-style:none;}
+h1,h2,h3,h4,h5,h6,small{font-size:100%;}
+sup,sub{font-size:83%;}
+pre,code,kbd,samp{font-family:inherit;}
+q:before,q:after{content:none;}
+textarea{overflow:auto;resize:none;}
+label,summary{cursor:default;}
+a,button{cursor:pointer;}
+h1,h2,h3,h4,h5,h6,em,strong,b{font-weight:bold;}
+del,ins,u,s,a,a:hover{text-decoration:none;}
+body,textarea,input,button,select,keygen,legend{font:12px/1.14 arial,\5b8b\4f53;color:#333;outline:0;}
+body{background:#fff;}
+a,a:hover{color:#333;}
+
+body{
+    background:#f4efe6;
+}
+.bg{
+    height:12.07rem;
+    background:url('../images/start.jpg') center top no-repeat;
+    background-size:100%;
+}
+
+.ruleTitle{
+    text-align:center;
+    position:relative;
+    line-height:1;
+    color:#999;
+    font-size:.38rem;
+    &:before{
+        content:'';
+        height:0.07rem;
+        display:inline-block;
+        vertical-align:top;
+        position:relative;
+        top:.15rem;
+        width:.81rem;
+        background:url('../images/icon-title-l.png') 0 0 no-repeat;
+        background-size:contain;
+    }
+    &:after{
+        position:relative;
+        top:.15rem;
+        display:inline-block;
+        vertical-align:top;
+        content:'';
+        height:0.07rem;
+        width:.81rem;
+        background:url('../images/icon-title-r.png') 0 0 no-repeat;
+        background-size:contain;
+    }
+    &-text{
+        padding:0 .1rem;
+    }
+}
+.start{
+    &-rule{
+        top:5.25rem;
+    }
+    &-desc{
+        width:5rem;
+        font-size:.34rem;
+        color:#423c3a;
+        position:absolute;
+        top:6rem;
+        left:50%;
+        margin-left:-2.5rem;
+        line-height:2;
+    }
+    &-btn{
+        width:4.5rem;
+        height:.92rem;
+        background:url('../images/btn-1.png') 0 0 no-repeat;
+        background-size:contain;
+        font-size:.38rem;
+        line-height:.92rem;
+        text-align:center;
+        color:#f1ece3;
+        position:absolute;
+        top:9.55rem;
+        left:50%;
+        margin-left:-2.25rem;
+    }
+    &-title{
+        width:4.89rem;
+        height:4.09rem;
+        background:url('../images/start-title.png') 0 0 no-repeat;
+        background-size:contain;
+        position:absolute;
+        left:1.34rem;
+        top:.74rem;
+    }
+}
+
+.diff{
+    &-rule{
+        top:4.56rem;
+    }
+    position:relative;
+    &-title{
+        width:5.45rem;
+        height:2.8rem;
+        background:url('../images/diff-title.png') 0 0 no-repeat;
+        background-size:contain;
+        position:absolute;
+        left:1.03rem;
+        top:.95rem;
+    }
+    &-btns{
+        position:absolute;
+        width:3.5rem;
+        left:2rem;
+        top:5.52rem;
+    }
+    &-btn{
+        margin-bottom:.4rem;
+        width:3.5rem;
+        height:.92rem;
+        background:url('../images/btn-2.png') 0 0 no-repeat;
+        background-size:100%;
+        font-size:.38rem;
+        color:#f1ece3;
+        text-align:center;
+        line-height:.92rem;
+    }
+    &-last{
+        position:absolute;
+        left:50%;
+        transform:translateX(-50%);
+        top:9.6rem;
+        line-height:1;
+        font-size:.32rem;
+        color:#999;
+        &_h{
+            color:#4a130e;
+        }
+    }
+}
+.run{
+    &-tian{
+        width:2.8rem;
+        height:2.8rem;
+        background:url('../images/tian.png') 0 0 no-repeat;
+        background-size:100%;
+        position:absolute;
+        top:.9rem;
+        left:50%;
+        margin-left:-1.4rem;
+        font-size:1.8rem;
+        color:#333;
+        text-align:center;
+        line-height:2.8rem;
+    }
+    &-time{
+        font-size:.32rem;
+        color:#999;
+        text-align:center;
+        line-height:1;
+        position:absolute;
+        left:50%;
+        transform:translateX(-50%);
+        top:4.53rem;
+        &_h{
+            font-size:.8rem;
+            color:#4a130e;
+        }
+    }
+    &-zis{
+        width:5.8rem;
+        position:absolute;
+        left:.85rem;
+        top:5.76rem;
+    }
+    &-zi{
+        width:1.6rem;
+        height:1.6rem;
+        font-size:.8rem;
+        margin-bottom:.5rem;
+        color:#333;
+        background:rgba(255,255,255,0.5);
+        border:.04rem solid #ccc;
+        border-radius:100%;
+        box-sizing:border-box;
+        background-size:100%;
+        font-size:.8rem;
+        line-height:1.52rem;
+        text-align:center;
+        float:left;
+        margin-right:.5rem;
+        &_cor{
+            background-color:#cc3333;
+            color:#FFF;
+        }
+        &_err{
+            background-color:#333;
+            color:#FFF;
+        }
+    }
+    &-zisInner{
+        margin-right:-.5rem;
+    }
+}
+.result{
+    background:url('../images/result-bg.jpg') 0 0 no-repeat;
+    background-size:100%;
+    height:12.08rem;
+    &-img{
+        position:fixed;
+        top:0;
+        left:0;
+        right:0;
+        height:12.08rem;
+        z-index:2;
+    }
+    &-tip{
+        position:fixed;
+        left:0;
+        right:0;
+        top:0;
+        z-index:9;
+        height:.88rem;
+        line-height:.88rem;
+        font-size:.28rem;
+        color:#FFF;
+        text-align:center;
+        //background:linear-gradient(to bottom,rgba(0,0,0,0.6),rgba(0,0,0,0));
+        background:url('../images/shadow.png') center top no-repeat;
+        background-size:100%;
+    }
+    &-stateOk{
+        width:5.22rem;
+        height:1.6rem;
+        background:url('../images/result-okTitle.png') 0 0 no-repeat;
+        background-size:100%;
+        position:absolute;
+        top:4.09rem;
+        left:50%;
+        margin-left:-2.61rem;
+    }
+    &-stateAgain{
+        font-size:.8rem;
+        color:$mc;
+        line-height:1;
+        position:absolute;
+        left:0;
+        right:0;
+        text-align:center;
+        top:4.35rem;
+    }
+    &-link{
+        z-index:9;
+        width:2rem;
+        height:.58rem;
+        line-height:.58rem;
+        border:1px solid $mc;
+        font-size:.26rem;
+        color:$mc;
+        text-align:center;
+        position:absolute;
+        left:50%;
+        top:6.31rem;
+        transform:translateX(-50%);
+        border-radius:.08rem;
+    }
+    &-ercode{
+        position:absolute;
+        top:7.3rem;
+        left:2.75rem;
+        width:2rem;
+        height:2rem;
+    }
+    &-note{
+        position:absolute;
+        top:2.2rem;
+        left:0;
+        right:0;
+        font-size:.34rem;
+        line-height:.78rem;
+        text-align:center;
+        color:#333;
+        &_h{
+            font-size:.52rem;
+            color:$mc;
+        }
+    }
+    &-ercodeText{
+        color:#333;
+        height:.9rem;
+        line-height:.9rem;
+        text-align:center;
+        font-size:.3rem;
+    }
+    &-btn{
+        position:fixed;
+        bottom:0;
+        left:0;
+        right:0;
+        z-index:8;
+        height:1rem;
+        line-height:1rem;
+        font-size:.36rem;
+        color:#FFF;
+        text-align:center;
+        background:$mc;
+    }
+}
+.blockImg{
+    width:100%;
+    height:100%;
+}
+.resultDialog{
+    display:none;
+    &_show {
+        display:block;
+    }
+    &-hd{
+        background-size:100%;
+        border-radius:.1rem;
+        width:4.8rem;
+        height:4.8rem;
+        background:#f4efe6 url('../images/ercode-bg.png') 0 0 no-repeat;
+        background-size:100%;
+        position:fixed;
+        top:2.2rem;
+        left:50%;
+        z-index:9;
+        transform:translateX(-50%);
+        box-sizing:border-box;
+        padding-top:.5rem;
+    }
+    &-text{
+        font-size:.24rem;
+        color:#333;
+        line-height:1.5;
+        text-align:center;
+        margin-top:.15rem;
+    }
+    &-close{
+        width:.65rem;
+        height:.65rem;
+        background:url('../images/close.png') 0 0 no-repeat;
+        background-size:100%;
+        position:absolute;
+        top:5.3rem;
+        left:50%;
+        transform:translateX(-50%);
+    }
+    &-backdrop{
+        position:fixed;
+        left:0;
+        top:0;
+        right:0;
+        bottom:0;
+        z-index:8;
+        background:rgba(0,0,0,0.8);
+    }
+    &-ercode{
+        width:3.2rem;
+        height:3.2rem;
+        margin:0 auto;
+    }
+}
+
+*{
+    -webkit-tap-highlight-color: rgba(255,0,0,0);
+}

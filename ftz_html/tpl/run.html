@@ -1,0 +1,9 @@
+    <div class="run bg" ng-if="page.isOk">
+        <div class="run-tian" ng-bind="page.noQues.key"></div>
+        <div class="run-time"><span class="run-time_h">{{page.time}}</span>秒</div>
+        <div class="run-zis">
+            <div class="run-zisInner">
+                <div class="run-zi" ng-repeat="x in page.noQues.list" ng-bind="x.name" ng-click="check(x)" ng-class="{'run-zi_err' : x.clicked && x.value != 1 && page.noQues.showResult ,'run-zi_cor' : x.value == 1 && page.noQues.showResult}"></div>
+            </div>
+        </div>
+    </div>    
