@@ -217,7 +217,7 @@ define(['html2canvas','angular-ui-router','_'],function(html2canvas) {
             $state.go('run');
         }        
     })
-    .controller('result',function($scope,$timeout,$html2canvas) {
+    .controller('result',function($scope,$timeout,$html2canvas,$rootScope) {
         $timeout(function() {
             $html2canvas.createImg().then( dataurl => {
                 $timeout(function() {
@@ -231,6 +231,7 @@ define(['html2canvas','angular-ui-router','_'],function(html2canvas) {
         $scope.close = function() {
             $scope.show = 0;
         }
+        document.title = '我认识' + $rootScope.config.siteConfig.no + '个繁体字，全世界排名第' + $rootScope.config.siteConfig.rate + '名，你敢来挑战吗？';
     })
     //api
     .factory('$api',function($http) {
