@@ -1,7 +1,7 @@
 define(['html2canvas','angular-ui-router','_'],function(html2canvas) {
     var PATH = PATH_MODULES + 'fanti/';
     angular.module('fanti',['ngCookies'])
-    .run(function($rootScope,$urlRouter,$api) {
+    .run(function($rootScope,$urlRouter,$api,$state) {
         $rootScope.config = {};
         $rootScope.$on('$locationChangeSuccess',function(evt) {
             if(!$rootScope.config.siteConfig){
@@ -14,6 +14,9 @@ define(['html2canvas','angular-ui-router','_'],function(html2canvas) {
                 $urlRouter.sync(); 
             });
         });
+        $rootScope.is_result = function() {
+            return !$state.is('result');
+        }
     })
     .controller('run',function($scope,$question,$interval,$html2canvas,$timeout,$state,$api,$rootScope,$cookieStore) {
         $scope.page = {
@@ -217,7 +220,7 @@ define(['html2canvas','angular-ui-router','_'],function(html2canvas) {
             $state.go('run');
         }        
     })
-    .controller('result',function($scope,$timeout,$html2canvas,$rootScope) {
+    .controller('result',function($scope,$timeout,$html2canvas) {
         $timeout(function() {
             $html2canvas.createImg().then( dataurl => {
                 $timeout(function() {
@@ -231,7 +234,12 @@ define(['html2canvas','angular-ui-router','_'],function(html2canvas) {
         $scope.close = function() {
             $scope.show = 0;
         }
-        document.title = '我认识' + $rootScope.config.siteConfig.no + '个繁体字，全世界排名第' + $rootScope.config.siteConfig.rate + '名，你敢来挑战吗？';
+        $scope.showShare = function() {
+            $scope.share = 1;
+        }
+        $scope.closeShare = function() {
+            $scope.share = 0;
+        }
     })
     //api
     .factory('$api',function($http) {
