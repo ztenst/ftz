@@ -60,6 +60,9 @@ class IndexController extends ApiController
 		$ct = Yii::app()->db->createCommand("select count(id) from score")->queryScalar();
 		$range = Yii::app()->db->createCommand($sql)->queryScalar();
 		$percent = round(($range)/$ct,2);
+		if($num==0) {
+			$percent = 0;
+		}
 		$this->frame['data'] = ['range'=>$range,'percent'=>($percent*100).'%'];
 	}
 }
