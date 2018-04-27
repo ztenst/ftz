@@ -8,6 +8,7 @@ class IndexController extends ApiController
 	public function init()
 	{
 		parent::init();
+		// session_start();
 		header("Access-Control-Allow-Origin: *");
 	}
 	public function actionIndex()
@@ -64,5 +65,91 @@ class IndexController extends ApiController
 			$percent = 0;
 		}
 		$this->frame['data'] = ['range'=>$range,'percent'=>($percent*100).'%'];
+	}
+
+	public function actionXingInfo($id='')
+	{
+		if($xing = XingExt::model()->findByPk($id)) {
+			if(isset($_SESSION['xings_view'])) {
+				$data = json_decode($_SESSION['xings_view'],true);
+				// var_dump($data);exit;
+				$in = 0;
+				foreach ($data as $key => $value) {
+					// var_dump($value);exit;
+					if($id==$value['id']) {
+						$in = 1;
+						break;
+					}
+				}
+				if($in==0) {
+					array_unshift($data, ['id'=>$id,'name'=>$xing->name]);
+					$_SESSION['xings_view'] = json_encode(array_slice($data,0,4));
+				}
+				
+			} else {
+				$_SESSION['xings_view'] = json_encode([['id'=>$id,'name'=>$xing->name]]);
+			}
+			
+			$this->frame['data'] = [
+				'id'=>$id,
+				'title'=>$xing->title,
+				'content'=>$xing->content
+			];
+		} else {
+			$this->returnError('暂无此姓');
+		}
+	}
+
+	public function actionXingSearch($kw='')
+	{
+		$kw1 = $kw.'氏';
+		if($xing = XingExt::model()->find("name='$kw' or name='$kw1'")) {
+			$id = $xing->id;
+			if(isset($_SESSION['xings_view'])) {
+				$data = json_decode($_SESSION['xings_view'],true);
+				// var_dump($data);exit;
+				$in = 0;
+				foreach ($data as $key => $value) {
+					if($id==$value['id']) {
+						$in = 1;
+						break;
+					}
+				}
+				if($in==0) {
+					array_unshift($data, ['id'=>$id,'name'=>$xing->name]);
+					$_SESSION['xings_view'] = json_encode(array_slice($data,0,4));
+				}
+			
+			} else {
+				$_SESSION['xings_view'] = json_encode([['id'=>$id,'name'=>$xing->name]]);
+			}
+			$this->frame['data'] = $id;
+		} else {
+			$this->returnError('暂无此姓');
+		}
+	}
+
+	public function actionXingList()
+	{
+		$data = $data['views'] = $data['sort'] = $data['list'] = [];
+		if(isset($_SESSION['xings_view'])) {
+			$data['views'] = json_decode($_SESSION['xings_view'],true);
+		}
+		$sorts = XingExt::model()->findAll(['order'=>'week_hits desc','limit'=>10]);
+		$sorts && shuffle($sorts);
+		if($sorts) {
+			foreach ($sorts as $key => $value) {
+				$data['sort'][] = ['id'=>$value['id'],'name'=>$value['name']];
+			}
+		}
+		$xings = XingExt::model()->findAll();
+		if($xings) {
+			foreach ($xings as $key => $value) {
+				$tmp[$value->py][] = ['id'=>$value['id'],'name'=>$value['name']];
+			}
+			ksort($tmp);
+			$data['list'] = $tmp;
+		}
+		$this->frame['data'] = $data;
 	}
 }

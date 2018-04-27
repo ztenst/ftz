@@ -66,6 +66,7 @@ class AdminController extends Controller
         return [
             ['label'=>'管理中心','icon'=>'icon-settings','url'=>'/admin/common/index','active'=>$this->route=='vip/common/index'],
             ['label' => '题库管理','icon' => 'icon-speedometer', 'url' => ['/admin/ftz/list'],'active'=>$this->route=='admin/ftz/edit'],
+            ['label' => '姓氏管理','icon' => 'icon-speedometer', 'url' => ['/admin/xing/list'],'active'=>$this->route=='admin/xing/edit'],
             ['label' => '文章管理','icon' => 'icon-speedometer', 'url' => ['/admin/news/list'],'active'=>$this->route=='admin/news/edit'||$this->route=='admin/news/list'],
             // ['label' => '产品管理', 'icon' => 'icon-speedometer', 'items' => [
             //     ['label' => '发布产品', 'url' => ['/admin/product/edit']],
