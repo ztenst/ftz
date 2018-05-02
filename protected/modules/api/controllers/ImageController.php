@@ -5,6 +5,12 @@ use Qiniu\Auth;
  */
 class ImageController extends ApiController
 {   
+    public function init()
+    {
+        parent::init();
+        // session_start();
+        header("Access-Control-Allow-Origin: *");
+    }
     /**
      * 二维码接口
      * @return png图片

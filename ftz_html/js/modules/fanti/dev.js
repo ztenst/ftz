@@ -201,7 +201,9 @@ define(['html2canvas','angular-ui-router','_'],function(html2canvas) {
         return {
             createImg : function() {
                 return html2canvas(document.querySelector("#j-result_ok")).then(canvas => {
-                    return canvas.toDataURL();
+                    var url =  canvas.toDataURL();
+                    var index = url.indexOf(',');
+                    return url.slice(index + 1);
                 });
             }
         }
@@ -220,12 +222,16 @@ define(['html2canvas','angular-ui-router','_'],function(html2canvas) {
             $state.go('run');
         }        
     })
-    .controller('result',function($scope,$timeout,$html2canvas,$rootScope,$state) {
+    .controller('result',function($scope,$timeout,$html2canvas,$rootScope,$state,$api) {
         $timeout(function() {
             $html2canvas.createImg().then( dataurl => {
-                $timeout(function() {
-                    $scope.img = dataurl;
-                });
+                $api.base64({
+                    'string' : dataurl
+                }).then(function(obj) {
+                    $timeout(function() {
+                        $scope.img = obj.data.data;
+                    });
+                })
             });
         },0,false);
         $scope.showMore = function() {
@@ -270,6 +276,10 @@ define(['html2canvas','angular-ui-router','_'],function(html2canvas) {
                 return $http.get(url,{
                     'params' : data
                 });
+            },
+            base64 : function(data) {
+                var url = '/api/image/upImage';
+                return $http.post(url,data);
             }
         }
     })
