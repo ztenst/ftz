@@ -6,7 +6,7 @@
     <img ng-src="{{img}}" alt="" class="result-img"/>
     <div class="result result_ok" id="j-result_ok">
         <div class="result-note" ng-if="config.siteConfig.state == 3">恭喜您挑战{{config.siteConfig.levelStr}}成功<br/>打败了全国{{config.siteConfig.rate.percent}}的选手</div>
-        <div class="result-note" ng-if="config.siteConfig.state == 2">您挑战初级成功答对{{config.siteConfig.no}}题<br/>打败了全国{{config.siteConfig.rate.percent}}的选手</div>
+        <div class="result-note" ng-if="config.siteConfig.state == 2">您挑战{{config.siteConfig.levelStr}}成功答对{{config.siteConfig.no}}题<br/>打败了全国{{config.siteConfig.rate.percent}}的选手</div>
         <div class="result-state">
             <div class="result-stateOk" ng-if="config.siteConfig.state == 3"></div>
             <div class="result-stateAgain" ng-if="config.siteConfig.state == 2">共答对{{config.siteConfig.no}}题</div>
@@ -15,13 +15,13 @@
             <div class="result-ercodeImg">
                 <img ng-src="{{config.siteConfig.qr}}" alt="" class="blockImg"/>
             </div>
-            <div class="result-ercodeText">欢迎扫描关注</div>
+            <div class="result-ercodeText">扫描开始游戏</div>
         </div>
         <div class="footer footer_ok"><i class="iconfont"></i>我有家谱出品</div>
     </div>  
     <div class="result-btn" ng-click="start()" ng-if="config.siteConfig.state == 2">再来一次</div>
-    <div class="result-btn" ui-sref="diff" ng-if="config.siteConfig.state == 3">挑战高级</div>
-    <div class="result-btn" ui-sref="index" ng-if="config.siteConfig.levelStr == '高级'">返回首页</div>
+    <div class="result-btn" ui-sref="diff" ng-if="config.siteConfig.state == 3 && config.siteConfig.levelStr != '高级'">挑战高级</div>
+    <div class="result-btn" ui-sref="index" ng-if="config.siteConfig.levelStr == '高级' && config.siteConfig.state == 3">返回首页</div>
     <div class="resultDialog" ng-class="{'resultDialog_show' : show}">
         <div class="resultDialog-backdrop"></div>
         <div class="resultDialog-hd">
