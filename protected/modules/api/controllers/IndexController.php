@@ -93,7 +93,8 @@ class IndexController extends ApiController
 			$this->frame['data'] = [
 				'id'=>$id,
 				'title'=>$xing->title,
-				'content'=>$xing->content
+				'content'=>$xing->content,
+				'ext_words'=>SiteExt::getAttr('qjpz','xinginfoword'),
 			];
 		} else {
 			$this->returnError('暂无此姓');
