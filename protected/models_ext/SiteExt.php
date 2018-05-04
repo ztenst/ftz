@@ -35,6 +35,7 @@ class SiteExt extends Site{
         'wx'=>'',
         'yb'=>'',
         'rule'=>'',
+        'xinginfoword'=>''
 
     ];
     public static $cateName = [
