@@ -1,0 +1,6 @@
+    <div class="detail">
+        <div class="detail-title">{{page.title}}</div>
+        <div class="detail-content" ng-bind-html="page.content|to_trusted"></div>
+        <div class="detail-btnPlace"></div>
+        <div class="detail-btn" ui-sref="list" ng-bind="page.ext_words"></div>
+    </div>
