@@ -70,6 +70,9 @@ class IndexController extends ApiController
 	public function actionXingInfo($id='')
 	{
 		if($xing = XingExt::model()->findByPk($id)) {
+			$xing->hits += 1;
+			$xing->week_hits += 1;
+			$xing->save();
 			if(isset($_SESSION['xings_view'])) {
 				$data = json_decode($_SESSION['xings_view'],true);
 				// var_dump($data);exit;
@@ -137,21 +140,31 @@ class IndexController extends ApiController
 			$data['views'] = json_decode($_SESSION['xings_view'],true);
 		}
 		$sorts = XingExt::model()->findAll(['order'=>'week_hits desc','limit'=>10]);
+		// var_dump($sorts);exit;
 		$sorts && shuffle($sorts);
 		if($sorts) {
 			foreach ($sorts as $key => $value) {
 				$data['sort'][] = ['id'=>$value['id'],'name'=>$value['name']];
 			}
 		}
-		$xings = XingExt::model()->findAll();
-		if($xings) {
-			foreach ($xings as $key => $value) {
-				$tmp[$value->py][] = ['id'=>$value['id'],'name'=>$value['name']];
+
+		$res = XingExt::setCache();
+		foreach ($res as $key => $value) {
+			if($key) {
+				$data['list'][$key] = $value;
 			}
-			ksort($tmp);
-			$data['list'] = $tmp;
 		}
+
+		// if($res XingExt::setCache()) {
+		// $data['list'] = XingExt::setCache();
+		// }
+		// var_dump($res);exit;
 		$this->frame['data'] = $data;
+	}
+
+	public function actionGetXingWords($value='')
+	{
+		$this->frame['data'] = SiteExt::getAttr('qjpz','xingindexword');
 	}
 
 }

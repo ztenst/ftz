@@ -35,7 +35,8 @@ class SiteExt extends Site{
         'wx'=>'',
         'yb'=>'',
         'rule'=>'',
-        'xinginfoword'=>''
+        'xinginfoword'=>'',
+        'xingindexword'=>''
 
     ];
     public static $cateName = [
@@ -48,6 +49,7 @@ class SiteExt extends Site{
             'wxQr'=>['type'=>'image','max'=>1,'name'=>'公众号二维码'],
             'rule'=>['type'=>'text','name'=>'规则'],
             'xinginfoword'=>['type'=>'text','name'=>'姓氏详情页底部文案'],
+            'xingindexword'=>['type'=>'text','name'=>'姓氏首页文案'],
             // 'pcIndexImages'=>['type'=>'multiImage','max'=>4,'name'=>'pc首页轮播图'],
             // 'pcLogo'=>['type'=>'image','max'=>1,'name'=>'pc版logo'],
             // 'sitePhone'=>['type'=>'text','name'=>'站点客服'],

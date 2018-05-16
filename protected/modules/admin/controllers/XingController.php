@@ -84,4 +84,11 @@ class XingController extends AdminController{
 		}
 		$this->setMessage('操作成功','success');	
 	}
+
+	public function actionSetCache()
+	{
+		CacheExt::delete('xing_list');
+		XingExt::setCache();
+		$this->setMessage('操作成功','success');
+	}
 }

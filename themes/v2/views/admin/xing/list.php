@@ -21,6 +21,7 @@ $this->breadcrumbs = array($this->pageTitle);
         </form>
     </div>
     <div class="pull-right">
+        <?php echo CHtml::ajaxLink('清除缓存',$this->createUrl('setCache'), array('type'=>'get', 'data'=>array(),'success'=>'function(data){location.reload()}'), array('class'=>'btn yellow ')); ?>
         <a href="<?php echo $this->createAbsoluteUrl('edit') ?>" class="btn blue">
             添加<?=$this->controllerName?> <i class="fa fa-plus"></i>
         </a>

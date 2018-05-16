@@ -240,7 +240,7 @@ define(['html2canvas','angular-ui-router','_'],function(html2canvas) {
         $scope.close = function() {
             $scope.show = 0;
         }
-        document.title = '我认识' + $rootScope.config.siteConfig.no + '个繁体字，全世界排名第' + $rootScope.config.siteConfig.rate.range+ '名，你敢来挑战吗？';
+        document.title = '我认识' + $rootScope.config.siteConfig.no + '个繁体字，打败了全国' + $rootScope.config.siteConfig.rate.percent+ '的选手，你敢来挑战吗？';
 
         $scope.start = function() {
             $state.go('run');

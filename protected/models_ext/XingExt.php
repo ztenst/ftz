@@ -46,6 +46,22 @@ class XingExt extends Xing{
         return parent::beforeValidate();
     }
 
+    public function setCache()
+    {
+        return CacheExt::gas('xing_list','AreaExt',0,'姓氏缓存',function (){
+                $tmp = [];
+               $xings = XingExt::model()->findAll();
+                if($xings) {
+                    foreach ($xings as $key => $value) {
+                        $tmp[$value->py][] = ['id'=>$value['id'],'name'=>$value['name']];
+                    }
+                    ksort($tmp);
+                    
+                }
+                return $tmp;
+             });
+    }
+
     /**
      * 命名范围
      * @return array

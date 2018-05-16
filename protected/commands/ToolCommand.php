@@ -351,4 +351,29 @@ foreach ($arr as $key => $value) {
 }
 
     }
+
+    public function actionImportExl()
+    {
+        $arr = ExcelHelper::read("D:/xing.xlsx",1);
+        // var_dump(count($arr[0]));exit;
+        foreach ($arr[0] as $key => $value) {
+            $value = array_values($value);
+            $ct = $value[2];
+            $ct = str_replace('姓氏起源', '<p class="titlecss">姓氏起源</p>', $ct);
+            $ct = str_replace('迁徙传播', '<p class="titlecss">迁徙传播</p>', $ct);
+            $ct = str_replace('人口分布', '<p class="titlecss">人口分布</p>', $ct);
+            $ct = str_replace('郡望堂号', '<p class="titlecss">郡望堂号</p>', $ct);
+            $ct = str_replace('宗祠对联', '<p class="titlecss">宗祠对联</p>', $ct);
+            // var_dump($value[2]);exit;
+            $xing = new XingExt;
+            $xing->py = $value[0];
+            $xing->name = $value[1];
+            $xing->title = $value[1].'氏起源';
+            $xing->content = $ct;
+            $xing->save();
+            echo ($key+1).'--------';
+// exit; 
+        }
+        // var_dump($arr);exit;
+    }
 }
