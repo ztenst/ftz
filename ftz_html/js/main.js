@@ -1,5 +1,6 @@
 var PATH_MODULES = CONFIG.baseUrl + 'modules/';
 require.config({
+    'urlArgs': "version=" + (+new Date),
     baseUrl : CONFIG.statePath + './js/',
     paths : {
         _ : 'underscore-min',
