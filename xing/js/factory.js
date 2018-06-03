@@ -21,6 +21,13 @@ define(['angular-ui-router'],function() {
                     'params' : data,
                     'cache' : true
                 });
+            },
+            'getXingWords' : function(data) {
+                var url = '/api/index/getXingWords';
+                return $http.get(url,{
+                    'params' : data,
+                    'cache' : true
+                })
             }
         };
     })

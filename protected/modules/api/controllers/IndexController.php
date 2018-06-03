@@ -64,7 +64,11 @@ class IndexController extends ApiController
 		if($num==0) {
 			$percent = 0;
 		}
-		$this->frame['data'] = ['range'=>$range,'percent'=>($percent*100).'%'];
+		$data['title'] = '我认识'.$num.'个繁体字，打败了全国'.($percent*100).'%'.'的选手，你敢来挑战吗？';
+		$data['desc'] = '我有家谱繁体字挑战';
+		$data['link'] = Yii::app()->request->getHostInfo().'/ftz_html';
+		$data['imgUrl'] = Yii::app()->request->getHostInfo().'/static/imgs/22.png';
+		$this->frame['data'] = ['range'=>$range,'percent'=>($percent*100).'%','share'=>$data];
 	}
 
 	public function actionXingInfo($id='')
@@ -165,6 +169,12 @@ class IndexController extends ApiController
 	public function actionGetXingWords($value='')
 	{
 		$this->frame['data'] = SiteExt::getAttr('qjpz','xingindexword');
+	}
+
+	public function actionGetShare()
+	{
+		
+
 	}
 
 }

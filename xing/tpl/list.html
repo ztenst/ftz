@@ -9,14 +9,11 @@
                 </div>
             </form>
         </div>
-        <div class="history wrapper" ng-if="page.list.history">
+        <div class="history wrapper" ng-if="page.list.views">
             <div class="history-bd" flex>
                 <div class="history-title">历史：</div>
                 <div class="history-list">
-                    <div class="history-item">赵</div>
-                    <div class="history-item">欧阳</div>
-                    <div class="history-item">司徒</div>
-                    <div class="history-item">刘</div>
+                    <div class="history-item" ng-repeat="x in page.list.views" ui-sref="detail({id:x.id})">{{x.name}}</div>
                 </div>
             </div>
         </div>

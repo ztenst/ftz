@@ -3,7 +3,8 @@ define(['angular-ui-router'],function() {
     .controller('index',function($scope,$api,$timeout,$state) {
         var page = {
             kw : '',
-            tip : false
+            tip : false,
+            introduce : ''
         };
         $scope.onSubmit = function(e) {
             console.log(e);
@@ -26,6 +27,10 @@ define(['angular-ui-router'],function() {
             console.log(page.kw);
             e.preventDefault();
         }
+
+        $api.getXingWords().then(function(obj) {
+            page.introduce = obj.data.data;
+        });
 
         $scope.page = page;
     })
