@@ -9,11 +9,14 @@ class WeChatSdk extends CComponent
     private $url;
     const TICKET_CACHE_KEY = 'WeChat.ticket';
     const ACCESS_TOKEN_CACHE_KEY = 'WeChat.accessToken';
-
-    public function __construct($appId, $appSecret, $url='')
+    public function init()
     {
-        $this->appId = $appId;
-        $this->appSecret = $appSecret;
+        # code...
+    }
+    public function __construct($url='')
+    {
+        $this->appId = 'wx17ffe4f7657339c8';
+        $this->appSecret = 'a058d7c8c55bb16ae013cdddd22e707e';
         // 注意 URL 一定要动态获取，不能 hardcode.
         $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
         if(!$url)

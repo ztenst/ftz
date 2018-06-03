@@ -89,6 +89,7 @@ $config2 = array(
             ),
         ),
         'file' => array('class' => 'application.components.FileComponent') + $config['file'],
+        'wx'=>array('class' => 'application.components.WeChatSdk'),
     ),
     'params' => CMap::mergeArray($params, $config['params'])
 );

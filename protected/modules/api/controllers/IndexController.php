@@ -171,10 +171,10 @@ class IndexController extends ApiController
 		$this->frame['data'] = SiteExt::getAttr('qjpz','xingindexword');
 	}
 
-	public function actionGetShare()
+	public function actionGetShareConfig($url='')
 	{
-		
-
+		$wx = Yii::app()->wx;
+		$this->frame['data'] = $wx->getSignPackage($url);
 	}
 
 }
