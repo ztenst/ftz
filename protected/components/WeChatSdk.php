@@ -25,12 +25,14 @@ class WeChatSdk extends CComponent
             $this->url = $url;
     }
 
-    public function getSignPackage()
+    public function getSignPackage($url='')
     {
         $jsapiTicket = $this->getJsApiTicket();
 
-
-        $url = $this->url;
+        if(!$url) {
+            $url = $this->url;
+        }   
+        
 
         $timestamp = time();
         $nonceStr = $this->createNonceStr();
