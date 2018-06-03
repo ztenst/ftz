@@ -227,7 +227,7 @@ define(['html2canvas','angular-ui-router','_'],function(html2canvas) {
           var obj = obj.data.data;
           var share = $rootScope.config.siteConfig.share;
           wx.config({
-                debug: false,
+                debug: true,
                 appId: obj.appId,
                 timestamp: obj.timestamp,
                 nonceStr: obj.nonceStr,
