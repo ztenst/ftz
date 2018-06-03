@@ -111,6 +111,7 @@ define(['html2canvas','angular-ui-router','_'],function(html2canvas) {
                 $rootScope.config.siteConfig.rate = rate;
                 $rootScope.config.siteConfig.state = 3;
                 $rootScope.config.siteConfig.no =  $scope.page.no + 1;
+                $rootScope.config.siteConfig.share = rate.share;
                 $state.go('result');
             });
         };
@@ -124,6 +125,7 @@ define(['html2canvas','angular-ui-router','_'],function(html2canvas) {
                 $rootScope.config.siteConfig.rate = rate;
                 $rootScope.config.siteConfig.state = 2;
                 $rootScope.config.siteConfig.no =  $scope.page.no;
+                $rootScope.config.siteConfig.share = rate.share;
                 $state.go('result');
             });
         }
@@ -201,9 +203,7 @@ define(['html2canvas','angular-ui-router','_'],function(html2canvas) {
         return {
             createImg : function() {
                 return html2canvas(document.querySelector("#j-result_ok")).then(canvas => {
-                    var url =  canvas.toDataURL();
-                    var index = url.indexOf(',');
-                    return url.slice(index + 1);
+                    return canvas.toDataURL();
                 });
             }
         }
@@ -223,15 +223,63 @@ define(['html2canvas','angular-ui-router','_'],function(html2canvas) {
         }        
     })
     .controller('result',function($scope,$timeout,$html2canvas,$rootScope,$state,$api) {
+        $api.getShareConfig().then(function(obj) {
+          var obj = obj.data.data;
+          var share = $rootScope.config.siteConfig.share;
+          wx.config({
+                debug: false,
+                appId: obj.appId,
+                timestamp: obj.timestamp,
+                nonceStr: obj.nonceStr,
+                signature: obj.signature,
+                jsApiList: [
+                  'onMenuShareTimeline',
+                  'onMenuShareAppMessage',
+                ]
+           });
+          wx.onMenuShareAppMessage({
+            title: share.title,
+            desc: share.desc,
+            link: share.link,
+            imgUrl: share.imgUrl,
+            trigger: function (res) {
+              // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+              //alert('用户点击发送给朋友');
+            },
+            success: function (res) {
+              //alert('已分享');
+            },
+            cancel: function (res) {
+              //alert('已取消');
+            },
+            fail: function (res) {
+              //alert(JSON.stringify(res));
+            }
+          });
+          wx.onMenuShareTimeline({
+            title: share.title,
+            link: share.link,
+            imgUrl: share.imgUrl,
+            trigger: function (res) {
+              // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
+              //alert('用户点击分享到朋友圈');
+            },
+            success: function (res) {
+              //alert('已分享');
+            },
+            cancel: function (res) {
+              //alert('已取消');
+            },
+            fail: function (res) {
+              //alert(JSON.stringify(res));
+            }
+          });
+        });
         $timeout(function() {
             $html2canvas.createImg().then( dataurl => {
-                $api.base64({
-                    'string' : dataurl
-                }).then(function(obj) {
-                    $timeout(function() {
-                        $scope.img = obj.data.data;
-                    });
-                })
+                $timeout(function() {
+                    $scope.img = dataurl;
+                });
             });
         },0,false);
         $scope.showMore = function() {
@@ -240,7 +288,7 @@ define(['html2canvas','angular-ui-router','_'],function(html2canvas) {
         $scope.close = function() {
             $scope.show = 0;
         }
-        document.title = '我认识' + $rootScope.config.siteConfig.no + '个繁体字，打败了全国' + $rootScope.config.siteConfig.rate.percent+ '的选手，你敢来挑战吗？';
+        document.title = '我认识' + $rootScope.config.siteConfig.no + '个繁体字，全世界排名第' + $rootScope.config.siteConfig.rate.range+ '名，你敢来挑战吗？';
 
         $scope.start = function() {
             $state.go('run');
@@ -253,7 +301,7 @@ define(['html2canvas','angular-ui-router','_'],function(html2canvas) {
         }
     })
     //api
-    .factory('$api',function($http) {
+    .factory('$api',function($http,$location) {
         return {
             getWords : function(data) {
                 var url = '/api/index/getWords';
@@ -277,9 +325,13 @@ define(['html2canvas','angular-ui-router','_'],function(html2canvas) {
                     'params' : data
                 });
             },
-            base64 : function(data) {
-                var url = '/api/image/upImage';
-                return $http.post(url,data);
+            getShareConfig : function() {
+                var url = '/api/index/getShareConfig';
+                return $http.get(url,{
+                  'params' : {
+                    url : $location.absUrl().split('#')[0]
+                  }
+                });
             }
         }
     })
