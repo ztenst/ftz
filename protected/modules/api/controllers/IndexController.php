@@ -143,7 +143,7 @@ class IndexController extends ApiController
 		if(isset($_SESSION['xings_view'])) {
 			$data['views'] = json_decode($_SESSION['xings_view'],true);
 		}
-		$sorts = XingExt::model()->findAll(['order'=>'week_hits desc','limit'=>10]);
+		$sorts = XingExt::model()->findAll(['order'=>'week_hits desc','limit'=>12]);
 		// var_dump($sorts);exit;
 		$sorts && shuffle($sorts);
 		if($sorts) {
