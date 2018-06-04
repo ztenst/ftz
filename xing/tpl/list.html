@@ -1,3 +1,4 @@
+<div class="list">
     <div class="list-hd">
         <div class="search">
             <form ng-submit="onSubmit($event)">
@@ -6,27 +7,45 @@
                     <div class="search-inputWrap" flex-box="1">
                         <input placeholder="请输入姓氏查询" type="text" name="" class="search-input" ng-model="page.kw"/>
                     </div>
+                    <input type="submit" class="search-btn" value="查询"/>
                 </div>
             </form>
         </div>
+        <!--<div class="history wrapper">-->
+            <!--<div class="history-bd" flex>-->
+                <!--<div class="history-title" flex-box="0">查询历史：</div>-->
+                <!--<div class="history-list">-->
+                    <!--<div class="history-item">赵</div>-->
+                    <!--<div class="history-item">欧阳</div>-->
+                    <!--<div class="history-item">司徒</div>-->
+                    <!--<div class="history-item">刘</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
         <div class="history wrapper" ng-if="page.list.views">
             <div class="history-bd" flex>
-                <div class="history-title">历史：</div>
+                <div class="history-title" flex-box="8">历史：</div>
                 <div class="history-list">
                     <div class="history-item" ng-repeat="x in page.list.views" ui-sref="detail({id:x.id})">{{x.name}}</div>
                 </div>
             </div>
         </div>
+        <div class="note wrapper">
+          <div class="note-title">姓氏标示着一个人的家族血缘关系。</div>
+          <div class="note-content">
+            <p>姓氏的产生，标志着从群婚制到以血缘关系的婚姻制的转变，是人类文明进步的一个重要里程碑。</p>
+            <p>中国姓氏文化源远流长，每一种姓都包含其独特的、丰富的文化内涵。</p>
+          </div>
+        </div>
     </div>
     <div class="xinshi wrapper" ng-if="page.list.sort" position-cal data="page.position">
         <div class="xinshi-block" data-index="1">
-            <div class="xinshi-title">常用姓氏</div>
+            <div class="xinshi-title">热门查询</div>
             <div class="xinshi-list">
                 <div class="xinshi-item" ng-repeat="x in page.list.sort" ui-sref="detail({id:x.id})">{{x.name}}</div>
-            </div>
         </div>
         <div class="xinshi-block" ng-repeat="(k,x) in page.list.list" data-index="{{k.charCodeAt(0) - 63}}">
-            <div class="xinshi-title">{{k}}</div>
+          <div class="xinshi-title">{{k}}（{{x.length}}个）</div>
             <div class="xinshi-list">
                 <div class="xinshi-item" ng-repeat="y in x" ui-sref="detail({id:y.id})">{{y.name}}</div>
             </div>
@@ -34,7 +53,7 @@
     </div>
     <div class="side" side-position data="page.position">
         <div class="side-list">
-            <div class="side-item">常用</div>
+            <div class="side-item">热门</div>
             <div class="side-item">A</div>
             <div class="side-item">B</div>
             <div class="side-item">C</div>
@@ -64,3 +83,4 @@
         </div>
     </div>
     <div class="tip" ng-class="{'tip_show' : page.tip}" flex="main:center cross:center"><div><div class="tip-1">抱歉暂无您查找的姓氏</div><div class="tip-2">您可尝试查找其他姓氏</div></div></div>
+</div>
